@@ -156,8 +156,13 @@ def filter_lookup(object_dictionary, file):
                     value_ = object_dictionary[key].get_filter_values()
                     filter_type = object_dictionary[key].get_filter_type()
                     if filter_type == "==":
+                        if "" in value_:
+                            if line_[index] not in value_:
+                                points += 0
+                            else:
+                                points += 1
                         # print(line_[index], value_)
-                        if line_[index] in value_:
+                        elif line_[index] in value_:
                             points += 1
                         elif any(value_ in line_[index].lower() for value_ in
                                  value_
